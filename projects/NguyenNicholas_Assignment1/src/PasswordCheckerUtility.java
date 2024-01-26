@@ -96,7 +96,6 @@ public class PasswordCheckerUtility {
 				&& hasDigit(password)
 				&& hasSpecialChar(password)
 				&& NoSameCharInSequence(password);
-
 	}
 
 	public static boolean hasBetweenSixAndNineChars(String password){
@@ -108,7 +107,7 @@ public class PasswordCheckerUtility {
 			throws WeakPasswordException{
 		if (hasBetweenSixAndNineChars(password)) {
 			throw new WeakPasswordException(
-					"The password is OK but weak - it contains fewer than 10 characters."
+				"The password is OK but weak - it contains fewer than 10 characters."
 			);
 		}
 		return false;
@@ -118,14 +117,16 @@ public class PasswordCheckerUtility {
 		for (int i = 0; i < passwords.size(); i++) {
 			try {
 				String current = passwords.get(i);
-				if (isValidPassword(current))
-					passwords.remove(current);
-			} catch (LengthException | NoUpperAlphaException | NoLowerAlphaException | NoDigitException |
-					 NoSpecialCharacterException | InvalidSequenceException e) {
+				if (isValidPassword(current)) passwords.remove(current);
+			} catch (LengthException
+					 | NoUpperAlphaException
+					 | NoLowerAlphaException
+					 | NoDigitException
+					 | NoSpecialCharacterException
+					 | InvalidSequenceException e) {
 				throw new RuntimeException(e);
 			}
 		}
-
 		return passwords;
 	}
 
