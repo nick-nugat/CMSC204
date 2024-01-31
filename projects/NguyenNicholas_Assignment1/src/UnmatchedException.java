@@ -1,7 +1,12 @@
 public class UnmatchedException extends Exception {
-	public UnmatchedException(){}
+	private static final String MESSAGE = "Passwords do not match";
 
-	public UnmatchedException(String message){
-		super(message);
+	public UnmatchedException(){
+		super(MESSAGE);
+	}
+
+	@Override
+	public String getMessage() {
+		return MESSAGE;
 	}
 }

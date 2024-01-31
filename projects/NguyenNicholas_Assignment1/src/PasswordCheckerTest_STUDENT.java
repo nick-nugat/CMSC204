@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  * STUDENT tests for the methods of PasswordChecker
- * @author 
+ * @author Nicholas Nguyen
  *
  */
 public class PasswordCheckerTest_STUDENT {
