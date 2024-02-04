@@ -15,15 +15,30 @@ import org.junit.Test;
  *
  */
 public class PasswordCheckerTest_STUDENT {
+	ArrayList<String> passwords;
+	String password1, password2;
 
 	@Before
 	public void setUp() throws Exception {
-		
+		String[] p = {
+				"406245nfsadfJ#",
+				"nicky1062fn",
+				"22610Bh",
+				"dsa;lkfjdsakl;jd",
+				"!!fdhsahdjf!1",
+				"batter20515t",
+				"*NCD2iXMaqKE6t",
+				"9WP@og78LBZ*dV",
+				"operate-catfish-extortion",
+				"3e^@$ESz8nT&gA"
+		};
+		passwords = new ArrayList<String>();
+		passwords.addAll(Arrays.asList(p)); // puts strings into the ArrayList
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	
+		passwords = null;
 	}
 
 	/**
@@ -31,9 +46,15 @@ public class PasswordCheckerTest_STUDENT {
 	 * This test should throw a LengthException for second case.
 	 */
 	@Test
-	public void testIsValidPasswordTooShort()
-	{
-		fail("Not implemented by student yet");
+	public void testIsValidPasswordTooShort() {
+		try{
+			assertTrue(PasswordCheckerUtility.isValidPassword("501cgnaerq#A"));
+			assertTrue("Did not throw lengthException", true);
+		} catch(LengthException e){
+			fail("Throws LengthException");
+		} catch(Exception e){
+			assertTrue("Threw another exception", true);
+		}
 	}
 	
 	/**
@@ -41,9 +62,15 @@ public class PasswordCheckerTest_STUDENT {
 	 * This test should throw a NoUpperAlphaException for second case
 	 */
 	@Test
-	public void testIsValidPasswordNoUpperAlpha()
-	{
-		fail("Not implemented by student yet");
+	public void testIsValidPasswordNoUpperAlpha() {
+		try{
+			assertTrue(PasswordCheckerUtility.isValidPassword("123456asdfasdf"));
+			fail("Did not throw NoUpperAlphaException");
+		} catch(NoUpperAlphaException e) {
+			assertTrue("Threw a NoUpperAlphaException",true);
+		} catch(Exception e) {
+			fail("Threw some other exception besides NoUpperAlphaException");
+		}
 	}
 	
 	/**
@@ -51,18 +78,30 @@ public class PasswordCheckerTest_STUDENT {
 	 * This test should throw a NoLowerAlphaException for second case
 	 */
 	@Test
-	public void testIsValidPasswordNoLowerAlpha()
-	{
-		fail("Not implemented by student yet");
+	public void testIsValidPasswordNoLowerAlpha() {
+		try{
+			assertTrue(PasswordCheckerUtility.isValidPassword("aghdkjferwklaj14234#2"));
+			assertTrue("Did not throw NoLowerAlphaException", true);
+		} catch(NoLowerAlphaException e) {
+			fail("Threw a NoLowerAlphaException");
+		} catch(Exception e) {
+			assertTrue("Threw some other exception besides NoLowerAlphaException", true);
+		}
 	}
 	/**
-	 * Test if the password has more than 2 of the same character in sequence
-	 * This test should throw a InvalidSequenceException for second case
+	 * Test if the password is weak
+	 * Throws a WeakPasswordException for second case
 	 */
 	@Test
-	public void testIsWeakPassword()
-	{
-		fail("Not implemented by student yet");
+	public void testIsWeakPassword() {
+		try{
+			assertTrue(PasswordCheckerUtility.isWeakPassword("ghkei25dx"));
+			fail("Didn't throw WeakPasswordException");
+		} catch(WeakPasswordException e){
+			assertTrue("Threw WeakPasswordException", true);
+		} catch(Exception e){
+			fail("Threw other exception");
+		}
 	}
 	
 	/**
@@ -70,9 +109,16 @@ public class PasswordCheckerTest_STUDENT {
 	 * This test should throw a InvalidSequenceException for second case
 	 */
 	@Test
-	public void testIsValidPasswordInvalidSequence()
-	{
-		fail("Not implemented by student yet");
+	public void testIsValidPasswordInvalidSequence() {
+		try{
+			assertTrue(PasswordCheckerUtility.isValidPassword("63dkxcma;eldkfj#aazZ"));
+			fail("Did not throw an InvalidSequenceException");
+		} catch(InvalidSequenceException e) {
+			assertTrue("Successfully threw an InvalidSequenceException",true);
+		}
+		catch(Exception e) {
+			fail("Threw some other exception besides an InvalidSequenceException");
+		}
 	}
 	
 	/**
@@ -80,9 +126,8 @@ public class PasswordCheckerTest_STUDENT {
 	 * One test should throw a NoDigitException
 	 */
 	@Test
-	public void testIsValidPasswordNoDigit()
-	{
-		fail("Not implemented by student yet");
+	public void testIsValidPasswordNoDigit() {
+
 	}
 	
 	/**
@@ -90,8 +135,7 @@ public class PasswordCheckerTest_STUDENT {
 	 * This test should not throw an exception
 	 */
 	@Test
-	public void testIsValidPasswordSuccessful()
-	{
+	public void testIsValidPasswordSuccessful() {
 		fail("Not implemented by student yet");
 	}
 	
