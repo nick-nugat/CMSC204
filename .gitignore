@@ -37,3 +37,4 @@ bin/
 *.ppt
 *.pptx
 !*.md
+*.xlsx
