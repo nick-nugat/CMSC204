@@ -29,3 +29,11 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Other ###
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+!*.md
