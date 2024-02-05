@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * STUDENT tests for the methods of PasswordChecker
+ * STUDENT tests for the methods of PasswordCheckerUtility
  * @author Nicholas Nguyen
  *
  */
@@ -21,17 +21,18 @@ public class PasswordCheckerTest_STUDENT {
 	@Before
 	public void setUp() throws Exception {
 		String[] p = {
-				"406245nfsadfJ#",
+				"406245nfsadf#",
 				"nicky1062fn",
 				"22610Bh",
 				"dsa;lkfjdsakl;jd",
 				"!!fdhsahdjf!1",
 				"batter20515t",
-				"*NCD2iXMaqKE6t",
-				"9WP@og78LBZ*dV",
+				"NCD2iXMaqKE6t",
+				"9WPog78LBZdV",
 				"operate-catfish-extortion",
-				"3e^@$ESz8nT&gA"
+				"3e^@$ESz8nT&gAA"
 		};
+
 		passwords = new ArrayList<String>();
 		passwords.addAll(Arrays.asList(p)); // puts strings into the ArrayList
 	}
@@ -48,12 +49,12 @@ public class PasswordCheckerTest_STUDENT {
 	@Test
 	public void testIsValidPasswordTooShort() {
 		try{
-			assertTrue(PasswordCheckerUtility.isValidPassword("501cgnaerq#A"));
-			assertTrue("Did not throw lengthException", true);
+			assertTrue(PasswordCheckerUtility.isValidPassword("501cg"));
+			fail("Did not throw lengthException");
 		} catch(LengthException e){
-			fail("Throws LengthException");
+			assertTrue("Throws LengthException", true);
 		} catch(Exception e){
-			assertTrue("Threw another exception", true);
+			fail("Threw another exception");
 		}
 	}
 	
@@ -127,7 +128,14 @@ public class PasswordCheckerTest_STUDENT {
 	 */
 	@Test
 	public void testIsValidPasswordNoDigit() {
-
+		try{
+			assertTrue(PasswordCheckerUtility.isValidPassword("eivjdkaA#asd;Ac"));
+			fail("Did not throw NoDigitException");
+		} catch(NoDigitException e){
+			assertTrue("Threw NoDigitException", true);
+		} catch(Exception e){
+			fail("Threw other exception");
+		}
 	}
 	
 	/**
@@ -136,16 +144,76 @@ public class PasswordCheckerTest_STUDENT {
 	 */
 	@Test
 	public void testIsValidPasswordSuccessful() {
-		fail("Not implemented by student yet");
+		//todo
+		try {
+			assertTrue(PasswordCheckerUtility.isValidPassword("5umQs5@*RV%"));
+			assertTrue("Throws no exception", true);
+		} catch(Exception e){
+			fail("Throws an exception");
+		}
 	}
 	
 	/**
 	 * Test the invalidPasswords method
-	 * Check the results of the ArrayList of Strings returned by the validPasswords method
+	 * Check the invalid of the ArrayList of Strings returned by the validPasswords method
 	 */
 	@Test
 	public void testInvalidPasswords() {
-		fail("Not implemented by student yet");
+		ArrayList<String> invalid;
+		Scanner scan;
+
+		invalid = PasswordCheckerUtility.getInvalidPasswords(passwords);
+		scan = new Scanner(invalid.get(0));
+
+		assertEquals(scan.next(), "406245nfsadf#");
+		String nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("uppercase"));
+
+		scan = new Scanner(invalid.get(1));
+		assertEquals(scan.next(), "nicky1062fn");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("uppercase"));
+
+		scan = new Scanner(invalid.get(2));
+		assertEquals(scan.next(), "22610Bh");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("special"));
+
+		scan = new Scanner(invalid.get(3));
+		assertEquals(scan.next(), "dsa;lkfjdsakl;jd");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("uppercase"));
+
+		scan = new Scanner(invalid.get(4));
+		assertEquals(scan.next(), "!!fdhsahdjf!1");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("uppercase") );
+
+
+		scan = new Scanner(invalid.get(5));
+		assertEquals(scan.next(), "batter20515t");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("uppercase") );
+
+		scan = new Scanner(invalid.get(6));
+		assertEquals(scan.next(), "NCD2iXMaqKE6t");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("special") );
+
+		scan = new Scanner(invalid.get(7));
+		assertEquals(scan.next(), "9WPog78LBZdV");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("special") );
+
+		scan = new Scanner(invalid.get(8));
+		assertEquals(scan.next(), "operate-catfish-extortion");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("uppercase") );
+
+		scan = new Scanner(invalid.get(9));
+		assertEquals(scan.next(), "3e^@$ESz8nT&gAA");
+		nextResults = scan.nextLine().toLowerCase();
+		assertTrue(nextResults.contains("sequence") );
 	}
 	
 }
