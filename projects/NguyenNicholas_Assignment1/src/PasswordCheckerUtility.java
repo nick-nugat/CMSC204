@@ -3,6 +3,11 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * PasswordCheckerUtility class to check passwords for their security, throwing respective exceptions when needed
+ * @author Nicholas Nguyen
+ *
+ */
 public class PasswordCheckerUtility {
 	public PasswordCheckerUtility(){}
 
@@ -59,11 +64,14 @@ public class PasswordCheckerUtility {
 	}
 
 	public static boolean NoSameCharInSequence(String password) throws InvalidSequenceException{
-		for (int i = 0; i < password.length(); i++)
-			if (password.charAt(i) == password.charAt(i + 1))
-				throw new InvalidSequenceException();
+		for (int i = 0; i < password.length() - 1; i++) {
+			char current = password.charAt(i);
+			char next = password.charAt(i + 1);
 
-		return false;
+			if (current == next)
+				throw new InvalidSequenceException();
+		}
+		return true;
 
 	}
 
