@@ -38,3 +38,9 @@ bin/
 *.pptx
 !*.md
 *.xlsx
+
+docs/
+!docs/*.png
+!docs/*.jpg
+!docs/*[Dd]esign*
+!docs/*[Nn]guyen*
