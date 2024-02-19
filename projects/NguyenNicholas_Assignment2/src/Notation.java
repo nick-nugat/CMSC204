@@ -52,13 +52,14 @@ public class Notation {
 			for (char value : postfix.toCharArray()) {
 				if (value == ' ') continue; // Ignore spaces
 				if (Character.isDigit(value)) {
-					stack.push(String.valueOf(value)); // Push digit as a string
+					stack.push(Character.toString(value)); // Push digit as a string
 				} else if (isOperator(value)) {
 					if (stack.size() < 2) throw new InvalidNotationFormatException();
 
-					String operand2 = stack.pop(); // Pop the second operand
-					String operand1 = stack.pop(); // Pop the first operand
+					String operand2 = stack.pop();
+					String operand1 = stack.pop();
 					String subExpr = "(" + operand1 + value + operand2 + ")";
+
 					stack.push(subExpr); // Push the combined expression back onto the characters
 				}
 			}
@@ -72,47 +73,84 @@ public class Notation {
 
 
 
-//	public static double evaluatePostfixExpression(String postfixExpr) throws InvalidNotationFormatException{
-//		try{
-//			for (char value : postfixExpr.toCharArray()) {
-//				if (value == ' ') continue;
-//				if (Character.isDigit(value)){
-//
-//				}
-//			}
-//		} catch (StackUnderflowException | StackOverflowException e){
-//			throw new RuntimeException();
-//		}
-//
-//	}
+	public static double evaluatePostfixExpression(String postfixExpr) throws InvalidNotationFormatException{
+		MyStack<Double> stack = new MyStack<>();
+
+		try{
+			for (char value : postfixExpr.toCharArray()) {
+				if (value == ' ') continue;
+				if (Character.isDigit(value)){
+					stack.push((double) (value - '0'));
+				}  else if (isOperator(value)) {
+					if (stack.size() < 2) throw new InvalidNotationFormatException();
+
+					double right = stack.pop();
+					double left = stack.pop();
+					double result = applyOperation(left, right, value);
+
+					stack.push(result);
+				}
+			}
+			if (stack.size() != 1) throw new InvalidNotationFormatException();
+			return stack.pop();
+		} catch (StackUnderflowException | StackOverflowException e){
+			throw new RuntimeException();
+		}
+
+	}
 
 
 
 
 	// student added methods
-	public static boolean isLeftParenthesis(char value){
+	private static boolean isLeftParenthesis(char value){
 		return value == '('
 				|| value == '['
 				|| value == '{'
 				|| value == '<';
 	}
-	public static boolean isRightParenthesis(char value){
+	private static boolean isRightParenthesis(char value){
 		return value == ')'
 				|| value == ']'
 				|| value == '}'
 				|| value == '>';
 	}
 
-	public static boolean isOperator(char value) {
-		return value == '+' || value == '-' || value == '*' || value == '/';
+	private static boolean isOperator(char value) {
+		return value == '+'
+				|| value == '-'
+				|| value == '*'
+				|| value == '/';
+	}
+
+	//applies a certain operation
+	private static double applyOperation(double left, double right, char operation) {
+		switch(operation){
+			case '+':
+				return left + right;
+			case '-':
+				return left - right;
+			case '*':
+				return left * right;
+			case '/':
+				if (right == 0) throw new ArithmeticException("You can't divide by 0!");
+				return left / right;
+			default:
+				throw new UnsupportedOperationException(operation + " is not an operation!");
+		}
 	}
 
 	//checks for operators of higher importance
-	public static int precedence(char c) {
-		return switch (c) {
-			case '+', '-' -> 1;
-			case '*', '/' -> 2;
-			default -> -1;
-		};
+	private static int precedence(char c) {
+		switch (c) {
+			case '+':
+			case '-':
+				return 1;
+			case '*':
+			case '/':
+				return 2;
+			default:
+				return -1;
+		}
 	}
 }

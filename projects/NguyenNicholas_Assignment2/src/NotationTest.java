@@ -90,33 +90,33 @@ public class NotationTest {
 		}
 	}
 
-//	@Test
-//	public void testComplexEvaluatePostfixExpression() throws InvalidNotationFormatException {
-//		double result = Notation.evaluatePostfixExpression(complexPostfix);
-//		assertEquals(evalComplexPostfix, result, .001);
-//	}
+	@Test
+	public void testComplexEvaluatePostfixExpression() throws InvalidNotationFormatException {
+		double result = Notation.evaluatePostfixExpression(complexPostfix);
+		assertEquals(evalComplexPostfix, result, .001);
+	}
 
-//	@Test
-//	public void testIntermediateEvaluatePostfixExpression() throws InvalidNotationFormatException {
-//		double result = Notation.evaluatePostfixExpression(intermediatePostfix);
-//		assertEquals(evalIntermediatePostfix, result, .001);
-//	}
+	@Test
+	public void testIntermediateEvaluatePostfixExpression() throws InvalidNotationFormatException {
+		double result = Notation.evaluatePostfixExpression(intermediatePostfix);
+		assertEquals(evalIntermediatePostfix, result, .001);
+	}
+
+	@Test
+	public void testEasyEvaluatePostfixExpression() throws InvalidNotationFormatException {
+		double result = Notation.evaluatePostfixExpression(easyPostfix);
+		assertEquals(evalEasyPostfix, result, .001);
+	}
 //
-//	@Test
-//	public void testEasyEvaluatePostfixExpression() throws InvalidNotationFormatException {
-//		double result = Notation.evaluatePostfixExpression(easyPostfix);
-//		assertEquals(evalEasyPostfix, result, .001);
-//	}
-//
-//	@Test
-//	public void testInvalidPostfixExpressionA() {
-//		try{
-//			Notation.evaluatePostfixExpression(invalidPostfixExpression);
-//			assertTrue(false, "This should have thrown an InvalidNotationFormatException");
-//		}
-//		catch (InvalidNotationFormatException e)
-//		{
-//			assertTrue(true, "This should have thrown an InvalidNotationFormatException");
-//		}
-//	}
+	@Test
+	public void testInvalidPostfixExpressionA() {
+		try{
+			Notation.evaluatePostfixExpression(invalidPostfixExpression);
+			assertTrue(false, "This should have thrown an InvalidNotationFormatException");
+		}
+		catch (InvalidNotationFormatException e)
+		{
+			assertTrue(true, "This should have thrown an InvalidNotationFormatException");
+		}
+	}
 }
