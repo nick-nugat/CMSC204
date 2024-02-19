@@ -55,11 +55,20 @@ public class MyStack<T> implements StackInterface<T> {
 	}
 
 	@Override
+	public void fill(ArrayList<T> list) throws StackOverflowException {
+		for (T element : list) {
+			if (isFull()) {
+				throw new StackOverflowException();
+			}
+			push(element);
+		}
+	}
+
+	@Override
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-
-		for (int i = 0; i < elements.size(); i++) {
-			builder.append(elements.get(i));
+		for (T element : elements) {
+			builder.append(element);
 		}
 		return builder.toString();
 	}
@@ -74,15 +83,5 @@ public class MyStack<T> implements StackInterface<T> {
 			}
 		}
 		return sb.toString();
-	}
-
-	@Override
-	public void fill(ArrayList<T> list) throws StackOverflowException {
-		for (T element : list) {
-			if (isFull()) {
-				throw new StackOverflowException();
-			}
-			push(element);
-		}
 	}
 }

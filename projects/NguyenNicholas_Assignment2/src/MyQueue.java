@@ -48,18 +48,6 @@ public class MyQueue<T> implements QueueInterface<T> {
 	}
 
 	@Override
-	public String toString(String delimiter) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < elements.size(); i++) {
-			sb.append(elements.get(i).toString());
-			if (i < elements.size() - 1) {
-				sb.append(delimiter);
-			}
-		}
-		return sb.toString();
-	}
-
-	@Override
 	public void fill(ArrayList<T> list) throws QueueOverflowException {
 		for (T element : list) {
 			if (isFull()) {
@@ -67,5 +55,26 @@ public class MyQueue<T> implements QueueInterface<T> {
 			}
 			enqueue(element);
 		}
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		for (T element : elements) {
+			builder.append(element);
+		}
+		return builder.toString();
+	}
+
+	@Override
+	public String toString(String delimiter) {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < elements.size(); i++) {
+			builder.append(elements.get(i).toString());
+			if (i < elements.size() - 1) {
+				builder.append(delimiter);
+			}
+		}
+		return builder.toString();
 	}
 }
