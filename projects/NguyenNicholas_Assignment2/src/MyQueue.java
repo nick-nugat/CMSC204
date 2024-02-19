@@ -5,7 +5,10 @@ public class MyQueue<T> implements QueueInterface<T> {
 	private int capacity;
 
 
-	public MyQueue(){}
+	public MyQueue(){
+		capacity = 100;
+		elements = new ArrayList<>(capacity);
+	}
 
 	public MyQueue(int capacity) {
 		this.capacity = capacity;
@@ -37,14 +40,6 @@ public class MyQueue<T> implements QueueInterface<T> {
 			throw new QueueUnderflowException();
 		}
 		return elements.remove(0); // Remove the first element
-	}
-
-	@Override
-	public T front() throws QueueUnderflowException {
-		if (isEmpty()) {
-			throw new QueueUnderflowException();
-		}
-		return elements.get(0); // Get the first element without removing
 	}
 
 	@Override

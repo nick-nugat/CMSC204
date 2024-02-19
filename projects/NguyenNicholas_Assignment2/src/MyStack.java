@@ -4,7 +4,10 @@ public class MyStack<T> implements StackInterface<T> {
 	private ArrayList<T> elements;
 	private int capacity; // Maximum capacity of the stack
 
-	public MyStack(){}
+	public MyStack(){
+		capacity = 100;
+		elements = new ArrayList<>(capacity);
+	}
 
 	public MyStack(int capacity) {
 		this.capacity = capacity;
