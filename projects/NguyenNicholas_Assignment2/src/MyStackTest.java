@@ -15,16 +15,22 @@ public class MyStackTest {
 	// STUDENT: student tests will use the doubleS
 	public MyStack<Double> doubleS;
 	// STUDENT: add variables as needed for your student tests
-	
+	public MyQueue<Double> doubleQ;
+
 	@BeforeEach
 	public void setUp() throws Exception {
 		stringS = new MyStack<String>(5);
 		stringS.push(a);
 		stringS.push(b);
 		stringS.push(c);
-		
-		//STUDENT: add setup for doubleS for student tests
+
+		// STUDENT: setup for doubleS
+		doubleS = new MyStack<Double>(5);
+		doubleS.push(1.1);
+		doubleS.push(2.2);
+		doubleS.push(3.3);
 	}
+
 
 	@AfterEach
 	public void tearDown() throws Exception {
@@ -69,9 +75,20 @@ public class MyStackTest {
 
 	@Test
 	public void testPopStudent() {
-		//Use the doubleQ for student tests
-		fail("Not yet implemented");
+		try {
+			assertEquals(Double.valueOf(3.3), doubleS.pop());
+			assertEquals(Double.valueOf(2.2), doubleS.pop());
+			assertEquals(Double.valueOf(1.1), doubleS.pop());
+			// Stack is empty, next statement should cause StackUnderflowException
+			doubleS.pop();
+			fail("This should have caused a StackUnderflowException");
+		} catch (StackUnderflowException e) {
+			assertTrue(true, "This caught the expected StackUnderflowException");
+		} catch (Exception e) {
+			fail("Expected a StackUnderflowException, but caught a different exception");
+		}
 	}
+
 
 	@Test
 	public void testTop() throws StackUnderflowException, StackOverflowException {
@@ -115,10 +132,21 @@ public class MyStackTest {
 
 	@Test
 	public void testPushStudent() {
-		//Use the doubleQ for student tests
-		fail("Not yet implemented");
+		try {
+			assertTrue(doubleS.push(4.4));
+			assertTrue(doubleS.push(5.5));
+			assertEquals(5, doubleS.size()); // Assert the stack size after pushes
+			// Stack is full, next statement should cause StackOverflowException
+			doubleS.push(6.6);
+			fail("This should have caused a StackOverflowException");
+		} catch (StackOverflowException e) {
+			assertTrue(true, "This caught the expected StackOverflowException");
+		} catch (Exception e) {
+			fail("Expected a StackOverflowException, but caught a different exception");
+		}
 	}
-	
+
+
 	@Test
 	public void testToString() throws StackOverflowException {
 		assertEquals("abc", stringS.toString());
@@ -130,10 +158,12 @@ public class MyStackTest {
 
 	@Test
 	public void testToStringStudent() {
-		//Use the doubleQ for student tests
-		fail("Not yet implemented");
+		// Assuming doubleS already has 1.1, 2.2, 3.3 from setUp()
+		assertEquals("1.12.23.3", doubleS.toString(""));
+		assertEquals("1.1, 2.2, 3.3", doubleS.toString(", "));
 	}
-	
+
+
 	@Test
 	public void testToStringDelimiter() throws StackOverflowException {
 		assertEquals("a%b%c", stringS.toString("%"));

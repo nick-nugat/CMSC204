@@ -31,7 +31,7 @@ public class MyQueue<T> implements QueueInterface<T> {
 			throw new QueueOverflowException();
 		}
 		elements.add(element);
-		return false;
+		return true;
 	}
 
 	@Override

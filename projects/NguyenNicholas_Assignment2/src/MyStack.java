@@ -30,7 +30,7 @@ public class MyStack<T> implements StackInterface<T> {
 			throw new StackOverflowException();
 		}
 		elements.add(element);
-		return false;
+		return true;
 	}
 
 	@Override
@@ -52,6 +52,16 @@ public class MyStack<T> implements StackInterface<T> {
 	@Override
 	public int size() {
 		return elements.size();
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < elements.size(); i++) {
+			builder.append(elements.get(i));
+		}
+		return builder.toString();
 	}
 
 	@Override
