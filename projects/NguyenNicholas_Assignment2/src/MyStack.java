@@ -1,3 +1,7 @@
+/**
+ * @author Nicholas Nguyen
+ */
+
 import java.util.ArrayList;
 
 public class MyStack<T> implements StackInterface<T> {

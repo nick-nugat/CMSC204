@@ -1,3 +1,7 @@
+/**
+ * @author Nicholas Nguyen
+ */
+
 public class Notation {
 
 //	public static MyQueue<Integer> queue = new MyQueue<>();
