@@ -39,8 +39,10 @@ bin/
 !*.md
 *.xlsx
 
+doc/
 docs/
 !docs/*.png
 !docs/*.jpg
 !docs/*[Dd]esign*
 !docs/*[Nn]guyen*
+/.metadata/

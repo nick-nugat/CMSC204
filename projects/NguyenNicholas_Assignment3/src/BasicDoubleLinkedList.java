@@ -7,6 +7,11 @@ import java.util.Comparator;
 import java.util.ListIterator;
 
 public class BasicDoubleLinkedList <T> implements Iterable {
+	private BasicDoubleLinkedList<T> elements = new BasicDoubleLinkedList<>();
+	private T head;
+	private T dataail;
+	private int size;
+
 	/**
 	 * inner class Node
 	 */
@@ -16,68 +21,76 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 		private Node next;
 
 		public Node(T dataNode){
-			//todo
+			//todo implement constructor
 		}
-	}
+	} //end Node inner class
 
 	/**
 	 * inner class DoubleLinkedListIterator
 	 */
 	public class DoubleLinkedListIterator implements ListIterator<T>{
+		private Node current;
+
+		public DoubleLinkedListIterator(){
+			current = head;
+		}
+
+		// todo implement hasNext(), next(), hasPrevious() and previous()
 
 		@Override
 		public boolean hasNext() {
-			return false;
+
 		}
 
 		@Override
 		public T next() {
-			return null;
+
 		}
 
 		@Override
 		public boolean hasPrevious() {
-			return false;
+
 		}
 
 		@Override
 		public T previous() {
-			return null;
+
 		}
 
-
-
-
+		//other methods not implemented
 		@Override
-		public int nextIndex() {
-			return 0;
+		public int nextIndex() throws UnsupportedOperationException {
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public int previousIndex() {
-			return 0;
+		public int previousIndex() throws UnsupportedOperationException {
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void remove() {
-
+		public void remove() throws UnsupportedOperationException {
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void set(T t) {
-
+		public void set(T data) throws UnsupportedOperationException {
+			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void add(T t) {
-
+		public void add(T data) throws UnsupportedOperationException {
+			throw new UnsupportedOperationException();
 		}
-	}
 
 
-	//todo create head, tail, and size
+		//other methods will be throwing an UnsupportedOperationException
+	} //end DoubleLinkedListIterator inner class
+
+
 	public BasicDoubleLinkedList(){
-		//todo initialize head, tail, and size -> null, null, and o respectively (?)
+		head = tail = null;
+		size = 0;
 	}
 
 	/**
@@ -85,8 +98,10 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public int getSize(){
-
+		return size;
 	}
+
+//don't use iterators to implement the following methods
 
 	/**
 	 *
@@ -109,7 +124,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public T getFirst(){
-
+		return size == 0 ? null : head;
 	}
 
 	/**
@@ -117,7 +132,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public T getLast(){
-
+		return size == 0 ? null : tail;
 	}
 
 	/**
@@ -134,25 +149,18 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @param comparator
 	 * @return
 	 */
-	public BasicDoubleLinkedList.Node remove(T targetData, Comparator<T> comparator){
+	public Node remove(T dataargetData, Comparator<T> comparator){
 
 	}
 
-	/**
-	 *
-	 * @param targetData
-	 * @param comparator
-	 * @return
-	 */
-	public BasicDoubleLinkedList.Node remove​(T targetData, Comparator<T> comparator){
-
-	}
 
 	/**
-	 *
+	 * Removes and returns the first element from the list. If there are no elements the method returns null. Do not implement this method using iterators.
 	 * @return
 	 */
 	public T retrieveFirstElement(){
+		if (size != 0)
+			return head;
 
 	}
 

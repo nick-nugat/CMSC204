@@ -1,30 +1,34 @@
+---
+updated: 2024-02-19T02:08
+---
 # Final Assignment 1 Design
 > Nicholas Nguyen
+> [CMSC204 Public GitHub Repository](https://github.com/nick-nugat/CMSC204)
 ___
 ## GitHub screenshot
 ![[project-1-github-screenshot.png]]
-
+___
 ## Learning experience
-> *I'm not sure what we need to do for this section, but these are the questions I had to answer from my previous courses.*
+> *I'm not sure what we need to do for this section ~~(though I did notice on the rubric that we should write 3+ paragraphs)~~, but these are the questions I had to answer from my previous courses.*
 
 > [!question] Write about your Learning Experience, highlighting your lessons learned and learning experience from working on this project.
 > I enjoyed the learning experience I had with this project. I learned some new concepts that I now can implement into my future projects.
 
 
 > [!question] What have you learned?
-> This project taught me a good bit about exceptions and how to use them.
+> This project taught me a good bit about exceptions and how to use them. Before this project, I didn't really know what to do with exceptions, nor did I consider using them in a project like this. Although it seems a bit extreme to use so many exceptions for a simple project like this, it was a good learning experience and taught me the value of exceptions in Java.
 
 
 > [!question] What did you struggle with?
-> I struggled with figuring out how to implement the exceptions.
+> I struggled with figuring out how to implement the exceptions in a way where they could be used in my `PasswordCheckerUtility` class. Also, the GUI was admittedly pretty stubborn in working - JavaFX is not exactly a library I'm fond of.
 
 
 > [!question] What would you do differently on your next project?
-> Likely have a more consistent work schedule for projects.
+> For my next project, I will focus more on being proactive and lay out a more consistent work schedule.
 
 
 > [!question] What parts of this assignment were you successful with, and what parts (if any) were you not successful with?
-> I feel like I was successful with the majority of the project.
+> I feel like I was successful with the majority of the project; I got all my test cases to run pretty well, and I'm glad I got to work more with GitHub.
 
 
 > [!question] Provide any additional resources/links/videos you used to while working on this assignment/project.
