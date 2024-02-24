@@ -1,2 +1,2 @@
 # CMSC204
-This is a course I'm taking at Montgomery College for the 2024 Spring semester.
+This is a data structures course I'm currently taking.
