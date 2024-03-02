@@ -5,11 +5,12 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class BasicDoubleLinkedList <T> implements Iterable {
 	private BasicDoubleLinkedList<T> elements = new BasicDoubleLinkedList<>();
-	private T head;
-	private T dataail;
+	private Node head;
+	private Node tail;
 	private int size;
 
 	/**
@@ -21,7 +22,9 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 		private Node next;
 
 		public Node(T dataNode){
-			//todo implement constructor
+			this.data = dataNode;
+			this.previous = null;
+			this.next = null;
 		}
 	} //end Node inner class
 
@@ -32,29 +35,31 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 		private Node current;
 
 		public DoubleLinkedListIterator(){
-			current = head;
+			this.current = head;
 		}
-
-		// todo implement hasNext(), next(), hasPrevious() and previous()
 
 		@Override
 		public boolean hasNext() {
-
+			return current.next != null;
 		}
 
 		@Override
-		public T next() {
-
+		public T next() throws NoSuchElementException{
+			if (!hasNext()) throw new NoSuchElementException();
+			current = current.next;
+			return current.data;
 		}
 
 		@Override
 		public boolean hasPrevious() {
-
+			return current.previous != null;
 		}
 
 		@Override
 		public T previous() {
-
+			if (!hasPrevious()) throw new NoSuchElementException();
+			current = current.previous;
+			return current.data;
 		}
 
 		//other methods not implemented
@@ -108,7 +113,14 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @param data
 	 */
 	public void addToEnd(T data){
+		Node node = new Node(data);
+		if (size == 0){
+			head = tail = node;
+		}
 
+
+
+		size++;
 	}
 
 	/**
@@ -116,7 +128,10 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @param data
 	 */
 	public void addToFront(T data){
+		if (head != null) head = data;
 
+
+		size++;
 	}
 
 	/**
@@ -140,7 +155,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public ListIterator<T> iterator(){
-
+		return new DoubleLinkedListIterator(); //prob not right
 	}
 
 	/**
@@ -149,7 +164,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @param comparator
 	 * @return
 	 */
-	public Node remove(T dataargetData, Comparator<T> comparator){
+	public Node remove(T targetData, Comparator<T> comparator){
 
 	}
 
@@ -159,9 +174,10 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public T retrieveFirstElement(){
-		if (size != 0)
-			return head;
-
+		if (size == 0) return null;
+		T first = head;
+		head = null;
+		return first;
 	}
 
 	/**
@@ -169,7 +185,10 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public T retrieveLastElement(){
-
+		if (size == 0) return null;
+		T last = tail;
+		tail = null;
+		return last;
 	}
 
 	/**
