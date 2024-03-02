@@ -116,10 +116,11 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 		Node node = new Node(data);
 		if (size == 0){
 			head = tail = node;
+		} else{
+			tail.next = node;
+			node.previous = tail;
+			tail = node;
 		}
-
-
-
 		size++;
 	}
 
@@ -128,9 +129,14 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @param data
 	 */
 	public void addToFront(T data){
-		if (head != null) head = data;
-
-
+		Node node = new Node(data);
+		if (size == 0){
+			head = tail = node;
+		} else{
+			node.next = head;
+			head.previous = node;
+			head = node;
+		}
 		size++;
 	}
 
@@ -139,7 +145,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public T getFirst(){
-		return size == 0 ? null : head;
+		return size != 0 ? head.data : null;
 	}
 
 	/**
@@ -147,7 +153,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public T getLast(){
-		return size == 0 ? null : tail;
+		return size != 0 ? tail.data : null;
 	}
 
 	/**
@@ -175,9 +181,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 */
 	public T retrieveFirstElement(){
 		if (size == 0) return null;
-		T first = head;
-		head = null;
-		return first;
+		return head.data;
 	}
 
 	/**
@@ -186,9 +190,7 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 */
 	public T retrieveLastElement(){
 		if (size == 0) return null;
-		T last = tail;
-		tail = null;
-		return last;
+		return tail.data;
 	}
 
 	/**
