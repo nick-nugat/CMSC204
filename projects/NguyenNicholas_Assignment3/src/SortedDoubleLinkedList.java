@@ -1,4 +1,5 @@
 /**
+ * This class extends the BasicDoubleLinkedList<T> class. It represents a doubly linked list that is sorted.
  * @author Nicholas Nguyen
  */
 

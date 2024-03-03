@@ -1,4 +1,5 @@
 /**
+ * This class represents a doubly linked list, inner classes, fields, and methods to help manipulate nodes/pointers and data.
  * @author Nicholas Nguyen
  */
 
@@ -13,7 +14,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 	protected int size;
 
 	/**
-	 * inner class Node<T>
+	 * This is an inner class Node<T>. It is a blueprint for a node.
 	 */
 	public class Node<T>{
 		protected T data;
@@ -26,10 +27,10 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 	} //end Node<T> inner class
 
 	/**
-	 * inner class DoubleLinkedListIterator
+	 * inner class DoubleLinkedListIterator<T>
 	 */
-	public class DoubleLinkedListIterator implements ListIterator<T>{
-		private Node<T> current;
+	public class DoubleLinkedListIterator<T> implements ListIterator<T>{
+		private Node current;
 		private boolean atStart;
 
 
@@ -63,7 +64,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 			} else{
 				current = current.next;
 			}
-			return current.data;
+			return (T) current.data;
 		}
 
 		/**
@@ -88,7 +89,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 			if (current == head){
 				atStart = true;
 			}
-			T data = current.data;
+			T data = (T) current.data;
 			current = current.previous;
 			return data;
 		}
@@ -144,7 +145,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 		public void add(T data) throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
-	} //end DoubleLinkedListIterator inner class
+	} //end DoubleLinkedListIterator<T> inner class
 
 
 

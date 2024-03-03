@@ -6,7 +6,7 @@ updated: 2024-02-19T02:08
 > [CMSC204 Public GitHub Repository](https://github.com/nick-nugat/CMSC204)
 ___
 ## GitHub screenshot
-![[project-1-github-screenshot.png]]
+![[cmsc204/projects/NguyenNicholas_Assignment1/project-1-github-screenshot.png]]
 ___
 ## Learning experience
 > *I'm not sure what we need to do for this section ~~(though I did notice on the rubric that we should write 3+ paragraphs)~~, but these are the questions I had to answer from my previous courses.*
