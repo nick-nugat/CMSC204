@@ -20,10 +20,9 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 		protected Node<T> previous;
 		protected Node<T> next;
 
-		public Node<T>(T dataNode<T>){
-			this.data = dataNode<T>;
-			this.previous = null;
-			this.next = null;
+		public Node(T dataNode){
+			this.data = dataNode;
+
 		}
 	} //end Node<T> inner class
 
@@ -32,33 +31,45 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 	 */
 	public class DoubleLinkedListIterator implements ListIterator<T>{
 		private Node<T> current;
+		private boolean atStart;
 
 		public DoubleLinkedListIterator(){
 			this.current = head;
+			this.atStart = true;
 		}
 
 		@Override
 		public boolean hasNext() {
-			return current != null;
+			if (atStart) return head != null;
+			return current != null && current.next != null;
 		}
 
 		@Override
 		public T next() throws NoSuchElementException{
 			if (!hasNext()) throw new NoSuchElementException();
-			T data = current.data;
-			if (current.next != null) current = current.next;
-			return data;
+
+			if (atStart){
+				current = head;
+				atStart = false;
+			} else{
+				current = current.next;
+			}
+			return current.data;
 		}
 
 		@Override
 		public boolean hasPrevious() {
-			return current != null;
+			if (atStart) return false;
+			return current != null && (current.previous != null || current == head);
 		}
 
 		@Override
 		public T previous() throws NoSuchElementException {
 			if (!hasPrevious()) throw new NoSuchElementException();
 
+			if (current == head){
+				atStart = true;
+			}
 			T data = current.data;
 			current = current.previous;
 			return data;

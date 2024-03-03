@@ -6,9 +6,9 @@ import java.util.Comparator;
 import java.util.ListIterator;
 
 public class SortedDoubleLinkedList<T> extends BasicDoubleLinkedList<T>{
-	private Comparator<T> compareableObject;
+	private Comparator<T> comparableObject;
 
-	public SortedDoubleLinkedList(Comparator<T> compareableObject){
+	public SortedDoubleLinkedList(Comparator<T> comparableObject){
 		//todo implement constructor
 	}
 
