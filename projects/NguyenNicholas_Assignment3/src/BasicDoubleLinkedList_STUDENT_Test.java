@@ -29,15 +29,13 @@ public class BasicDoubleLinkedList_STUDENT_Test {
 			e = new Car("Mercedes-Benz", "G-Class", 2023),
 			f = new Car("BMW", "i4", 2023);
 
-	public ArrayList<Car> fill = new ArrayList<>();
-
 
 	@Before
 	public void setUp() throws Exception {
 		linkedString = new BasicDoubleLinkedList<>();
 		linkedString.addToEnd("homework");
 		linkedString.addToEnd("house");
-		stringComparator= new StringComparator();
+		stringComparator = new StringComparator();
 
 		linkedDouble = new BasicDoubleLinkedList<>();
 		linkedDouble.addToEnd(80.0);
@@ -56,7 +54,7 @@ public class BasicDoubleLinkedList_STUDENT_Test {
 		linkedDouble = null;
 		linkedCar = null;
 		doubleComparator = null;
-		stringComparator= null;
+		stringComparator = null;
 	}
 
 	@Test
@@ -421,7 +419,8 @@ public class BasicDoubleLinkedList_STUDENT_Test {
 		assertEquals(30.0, linkedDouble.getLast(), 0);
 		linkedDouble.addToEnd(32.0);
 		assertEquals(32.0, linkedDouble.getLast(), 0);
-		assertEquals(32.0, linkedDouble.retrieveLastElement(), 0);;
+		assertEquals(32.0, linkedDouble.retrieveLastElement(), 0);
+		;
 		assertEquals(30.0, linkedDouble.getLast(), 0);
 
 	}
