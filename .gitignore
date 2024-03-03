@@ -31,13 +31,7 @@ bin/
 .DS_Store
 
 ### Other ###
-*.pdf
-*.doc
-*.docx
-*.ppt
-*.pptx
 !*.md
-*.xlsx
 
 doc/
 docs/
