@@ -22,7 +22,6 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 		public Node(T dataNode){
 			this.data = dataNode;
-
 		}
 	} //end Node<T> inner class
 
