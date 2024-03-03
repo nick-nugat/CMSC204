@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-public class SortedDoubleLinkedListTest_STUDENT {
+public class SortedDoubleLinkedList_STUDENT_Test {
 	SortedDoubleLinkedList<String> sortedLinkedString;
 	SortedDoubleLinkedList<Double> sortedLinkedDouble;
 	SortedDoubleLinkedList<Car> sortedLinkedCar;
