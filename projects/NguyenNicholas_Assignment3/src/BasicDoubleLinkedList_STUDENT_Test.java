@@ -270,7 +270,6 @@ public class BasicDoubleLinkedList_STUDENT_Test {
 		} catch (Exception e) {
 			assertTrue("Threw an exception other than the NoSuchElementException", false);
 		}
-
 	}
 
 	@Test
