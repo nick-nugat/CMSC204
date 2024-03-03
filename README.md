@@ -1,2 +1,2 @@
 # CMSC204
-This is a data structures course I'm currently taking.
+Here lie the assignments and labs for CMSC204, a data structures course I'm currently taking.
