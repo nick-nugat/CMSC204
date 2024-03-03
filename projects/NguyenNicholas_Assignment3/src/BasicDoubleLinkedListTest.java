@@ -156,6 +156,7 @@ public class BasicDoubleLinkedListTest {
 		assertEquals(b, iteratorCar.next());
 		assertEquals(c, iteratorCar.next());
 		assertEquals(d, iteratorCar.next());
+
 		assertEquals(true, iteratorCar.hasPrevious());
 		assertEquals(d, iteratorCar.previous());
 		assertEquals(c, iteratorCar.previous());
