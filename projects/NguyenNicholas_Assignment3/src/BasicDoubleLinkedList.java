@@ -32,17 +32,27 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 		private Node<T> current;
 		private boolean atStart;
 
+
 		public DoubleLinkedListIterator(){
 			this.current = head;
 			this.atStart = true;
 		}
 
+		/**
+		 *
+		 * @return if there are more elements when traversing forward
+		 */
 		@Override
 		public boolean hasNext() {
 			if (atStart) return head != null;
 			return current != null && current.next != null;
 		}
 
+		/**
+		 *
+		 * @return data at next node
+		 * @throws NoSuchElementException
+		 */
 		@Override
 		public T next() throws NoSuchElementException{
 			if (!hasNext()) throw new NoSuchElementException();
@@ -56,12 +66,21 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 			return current.data;
 		}
 
+		/**
+		 *
+		 * @return if there are more elements when traversing backward
+		 */
 		@Override
 		public boolean hasPrevious() {
 			if (atStart) return false;
 			return current != null && (current.previous != null || current == head);
 		}
 
+		/**
+		 *
+		 * @return data of previous node
+		 * @throws NoSuchElementException
+		 */
 		@Override
 		public T previous() throws NoSuchElementException {
 			if (!hasPrevious()) throw new NoSuchElementException();
@@ -74,32 +93,59 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 			return data;
 		}
 
-		//other methods not implemented
+		//unimplemented methods
+
+		/**
+		 *
+		 * @return
+		 * @throws UnsupportedOperationException
+		 */
 		@Override
 		public int nextIndex() throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 *
+		 * @return
+		 * @throws UnsupportedOperationException
+		 */
 		@Override
 		public int previousIndex() throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 *
+		 * @return
+		 * @throws UnsupportedOperationException
+		 */
 		@Override
 		public void remove() throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 *
+		 * @return
+		 * @throws UnsupportedOperationException
+		 */
 		@Override
 		public void set(T data) throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
 
+		/**
+		 *
+		 * @return
+		 * @throws UnsupportedOperationException
+		 */
 		@Override
 		public void add(T data) throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
 	} //end DoubleLinkedListIterator inner class
+
 
 
 	public BasicDoubleLinkedList(){
@@ -109,7 +155,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 	/**
 	 *
-	 * @return
+	 * @return size of linked list
 	 */
 	public int getSize(){
 		return size;
@@ -151,7 +197,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 	/**
 	 *
-	 * @return
+	 * @return data of first node
 	 */
 	public T getFirst(){
 		return size != 0 ? head.data : null;
@@ -159,7 +205,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 	/**
 	 *
-	 * @return
+	 * @return data of last node
 	 */
 	public T getLast(){
 		return size != 0 ? tail.data : null;
@@ -167,7 +213,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 	/**
 	 *
-	 * @return
+	 * @return new double linked list iterator
 	 */
 	public ListIterator<T> iterator(){
 		return new DoubleLinkedListIterator(); //prob not right
@@ -177,7 +223,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 	 *
 	 * @param targetData
 	 * @param comparator
-	 * @return
+	 * @return node that is removed (or null is nonexistent)
 	 */
 	public Node<T> remove(T targetData, Comparator<T> comparator){
 		if (size == 0) return null;
@@ -212,7 +258,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 
 	/**
-	 * Removes and returns the first element from the list. If there are no elements the method returns null. Do not implement this method using iterators.
+	 *
 	 * @return data from head
 	 */
 	public T retrieveFirstElement(){
@@ -230,7 +276,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 	/**
 	 *
-	 * @return
+	 * @return data of last element
 	 */
 	public T retrieveLastElement(){
 		if (size == 0) return null;
@@ -248,7 +294,7 @@ public class BasicDoubleLinkedList <T> implements Iterable<T> {
 
 	/**
 	 *
-	 * @return
+	 * @return ArrayList representation of nodes
 	 */
 	public ArrayList<T> toArrayList(){
 		ArrayList<T> list = new ArrayList<>();

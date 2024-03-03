@@ -9,12 +9,15 @@ public class SortedDoubleLinkedList<T> extends BasicDoubleLinkedList<T>{
 	private Comparator<T> comparableObject;
 
 	public SortedDoubleLinkedList(Comparator<T> comparableObject){
-		//todo implement constructor
 		this.comparableObject = comparableObject;
 		head = tail = null;
 		size = 0;
 	}
 
+	/**
+	 * method that adds to the linked list sorted. it uses the compare() method from the Comparator interface to determine where to insert elements.
+	 * @param data
+	 */
 	public void add(T data){
 		Node<T> node = new Node<T>(data);
 		if (head == null){ //if empty
@@ -46,11 +49,21 @@ public class SortedDoubleLinkedList<T> extends BasicDoubleLinkedList<T>{
 		size++; //increment size
 	}
 
+	/**
+	 *
+	 * @param data
+	 * @param comparator
+	 * @return superclass implementation of remove()
+	 */
 	@Override
 	public Node remove(T data, Comparator<T> comparator){
 		return super.remove(data, comparator);
 	}
 
+	/**
+	 *
+	 * @return superclass implementation of iterator()
+	 */
 	@Override
 	public ListIterator<T> iterator(){
 		return super.iterator();
