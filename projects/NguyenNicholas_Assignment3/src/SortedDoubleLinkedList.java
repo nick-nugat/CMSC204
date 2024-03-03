@@ -29,12 +29,12 @@ public class SortedDoubleLinkedList<T> extends BasicDoubleLinkedList<T>{
 
 	@Override
 	public void addToEnd(T data) throws UnsupportedOperationException{
-		throw new UnsupportedOperationException("Invalid operation for sorted list.");
+		throw new UnsupportedOperationException("Invalid operation for sorted list");
 	}
 
 	@Override
 	public void addToFront(T data) throws UnsupportedOperationException{
-		throw new UnsupportedOperationException("Invalid operation for sorted list.");
+		throw new UnsupportedOperationException("Invalid operation for sorted list");
 	}
 
 

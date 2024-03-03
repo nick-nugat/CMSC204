@@ -7,8 +7,7 @@ import java.util.Comparator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-public class BasicDoubleLinkedList <T> implements Iterable {
-	private BasicDoubleLinkedList<T> elements = new BasicDoubleLinkedList<>();
+public class BasicDoubleLinkedList <T> implements Iterable<T> {
 	private Node head;
 	private Node tail;
 	private int size;
@@ -40,23 +39,25 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 
 		@Override
 		public boolean hasNext() {
-			return current.next != null;
+			return current != null;
 		}
 
 		@Override
 		public T next() throws NoSuchElementException{
 			if (!hasNext()) throw new NoSuchElementException();
+
+			T data = current.data;
 			current = current.next;
-			return current.data;
+			return data;
 		}
 
 		@Override
 		public boolean hasPrevious() {
-			return current.previous != null;
+			return current != head && current != null;
 		}
 
 		@Override
-		public T previous() {
+		public T previous() throws NoSuchElementException {
 			if (!hasPrevious()) throw new NoSuchElementException();
 			current = current.previous;
 			return current.data;
@@ -87,9 +88,6 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 		public void add(T data) throws UnsupportedOperationException {
 			throw new UnsupportedOperationException();
 		}
-
-
-		//other methods will be throwing an UnsupportedOperationException
 	} //end DoubleLinkedListIterator inner class
 
 
@@ -171,17 +169,52 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public Node remove(T targetData, Comparator<T> comparator){
+		if (size == 0) return null;
 
+		Node current = head;
+		while (current != null){
+			if (comparator.compare(targetData, current.data) == 0){ //0 means that they are equal
+				if (current == head){
+					head = head.next; //moves head forward
+					if (head != null){
+						head.previous = null;
+					}
+				} else if (current == tail){
+					tail = tail.previous; //moves tail back
+					if (tail != null){
+						tail.next = null;
+					}
+				} else{ //current node is neither the head or tail (in the middle)
+					 current.previous.next = current.next;
+					 if (current.next != null){ //if not end of list
+						 current.next.previous = current.previous;
+					 }
+				}
+				if (size == 0) head = tail = null; //if empty (all nodes removed)
+				size--;
+				return current;
+			}
+			current = current.next;
+		} //end while loop
+		return null;
 	}
 
 
 	/**
 	 * Removes and returns the first element from the list. If there are no elements the method returns null. Do not implement this method using iterators.
-	 * @return
+	 * @return data from head
 	 */
 	public T retrieveFirstElement(){
 		if (size == 0) return null;
-		return head.data;
+		T headData = head.data;
+		if (head == tail){
+			head = tail = null;
+		} else{
+			head = head.next;
+			head.previous = null;
+		}
+		size--;
+		return headData;
 	}
 
 	/**
@@ -190,7 +223,16 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 */
 	public T retrieveLastElement(){
 		if (size == 0) return null;
-		return tail.data;
+		T tailData = tail.data;
+
+		if (head == tail){
+			head = tail = null;
+		} else{
+			tail = tail.previous;
+			tail.next = null;
+		}
+		size--;
+		return tailData;
 	}
 
 	/**
@@ -198,7 +240,13 @@ public class BasicDoubleLinkedList <T> implements Iterable {
 	 * @return
 	 */
 	public ArrayList<T> toArrayList(){
-
+		ArrayList<T> list = new ArrayList<>();
+		Node current = head;
+		while (current != null){
+			list.add(current.data);
+			current = current.next;
+		}
+		return list;
 	}
 
 }

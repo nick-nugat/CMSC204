@@ -121,11 +121,12 @@ public class BasicDoubleLinkedListTest {
 		assertEquals(c,list.get(2));
 		assertEquals(d,list.get(3));
 	}
-	
+
 	@Test
 	public void testIteratorSuccessfulNext() {
 		linkedString.addToFront("Begin");
 		linkedString.addToEnd("End");
+
 		ListIterator<String> iterator = linkedString.iterator();
 		assertEquals(true, iterator.hasNext());
 		assertEquals("Begin", iterator.next());
@@ -133,7 +134,7 @@ public class BasicDoubleLinkedListTest {
 		assertEquals("World", iterator.next());
 		assertEquals(true, iterator.hasNext());
 		assertEquals("End", iterator.next());
-		
+
 		linkedCar.addToFront(a);
 		linkedCar.addToEnd(d);
 		ListIterator<Car> iteratorCar = linkedCar.iterator();
@@ -144,7 +145,7 @@ public class BasicDoubleLinkedListTest {
 		assertEquals(true, iteratorCar.hasNext());
 		assertEquals(d, iteratorCar.next());
 	}
-	
+
 	@Test
 	public void testIteratorSuccessfulPrevious() {
 		linkedCar.addToFront(a);
@@ -194,7 +195,8 @@ public class BasicDoubleLinkedListTest {
 	public void testIteratorNoSuchElementExceptionPrevious() {
 		linkedCar.addToFront(a);
 		linkedCar.addToEnd(d);
-		ListIterator<Car> iteratorCar = linkedCar.iterator();		
+		ListIterator<Car> iteratorCar = linkedCar.iterator();
+
 		assertEquals(true, iteratorCar.hasNext());
 		assertEquals(a, iteratorCar.next());
 		assertEquals(b, iteratorCar.next());
@@ -205,7 +207,7 @@ public class BasicDoubleLinkedListTest {
 		assertEquals(c, iteratorCar.previous());
 		assertEquals(b, iteratorCar.previous());
 		assertEquals(a, iteratorCar.previous());
-		
+
 		try{
 			//no more elements in list
 			iteratorCar.previous();
@@ -317,7 +319,7 @@ public class BasicDoubleLinkedListTest {
 			// TODO Auto-generated method stub
 			return arg0.compareTo(arg1);
 		}
-		
+
 	}
 	
 	private class DoubleComparator implements Comparator<Double>
