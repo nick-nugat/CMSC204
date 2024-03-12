@@ -34,10 +34,8 @@ bin/
 !*.md
 
 doc/
-docs/
-!docs/*.png
-!docs/*.jpg
-!docs/*[Dd]esign*
-!docs/*[Nn]guyen*
+docs/archived/
+docs/CMSC204_Syllabus.pdf
+
 /.metadata/
 review/
