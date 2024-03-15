@@ -7,11 +7,12 @@ import java.util.LinkedList;
 
 //implement a hash table with buckets
 public class CourseDBStructure implements CourseDBStructureInterface {
-	private static final double LOAD_FACTOR = 1.5;
 	//each element will have a hash code calculated based on CRN (since it's unique)
 	//however, tests require hashcode of String
+	private static final double LOAD_FACTOR = 1.5;
 	private LinkedList<CourseDBElement>[] hashTable;
 	private int tableLength;
+	private static final String COURSE_AS_STRING = "\nCourse:%s CRN:%d Credits:%d Instructor:%s Room:%s";
 
 	/**
 	 * Constructor to determine table length
@@ -65,13 +66,13 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 	}
 
 	@Override
-	public CourseDBElement get(int crn) throws IOException {
-		int index = crn % tableLength;
+	public CourseDBElement get(int CRN) throws IOException {
+		int index = CRN % tableLength;
 		LinkedList<CourseDBElement> bucket = hashTable[index];
 
 
 		for (CourseDBElement e : bucket) {
-			if (e.getCRN() == crn){
+			if (e.getCRN() == CRN){
 				return e;
 			} else break;
 		}
@@ -81,7 +82,26 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 
 	@Override
 	public ArrayList<String> showAll() {
-		return null;
+		ArrayList<String> list = new ArrayList<>();
+		
+		for (LinkedList<CourseDBElement> bucket : hashTable) {
+			for (CourseDBElement element : bucket) {
+				String id = element.getID();
+				int CRN = element.getCRN();
+				int credits = element.getCredits();
+				String instructorName = element.getInstructorName();
+				String roomNum = element.getRoomNum();
+				
+				String courseString = String.format(
+						COURSE_AS_STRING,
+							id, CRN, credits, instructorName, roomNum
+				);
+
+				list.add(courseString);
+			}
+		}
+
+		return list;
 	}
 
 	@Override
