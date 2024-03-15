@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class CourseDBManager implements CourseDBManagerInterface {
-	CourseDBStructure structure;
+	CourseDBStructure structure = new CourseDBStructure(1); //for testing only
 
 
 	/**

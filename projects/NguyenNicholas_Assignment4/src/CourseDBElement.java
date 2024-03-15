@@ -3,17 +3,17 @@
  */
 
 public class CourseDBElement implements Comparable {
-	private String courseID;
+	private String ID;
 	private int CRN;
 	private int credits;
-	private String roomNumber;
+	private String roomNum;
 	private String instructorName;
 
-	public CourseDBElement(String courseID, int CRN, int credits, String roomNumber, String instructorName) {
-		this.courseID = courseID;
+	public CourseDBElement(String ID, int CRN, int credits, String roomNum, String instructorName) {
+		this.ID = ID;
 		this.CRN = CRN;
 		this.credits = credits;
-		this.roomNumber = roomNumber;
+		this.roomNum = roomNum;
 		this.instructorName = instructorName;
 	}
 
@@ -22,12 +22,12 @@ public class CourseDBElement implements Comparable {
 		return 0;
 	}
 
-	public String getCourseID() {
-		return courseID;
+	public String getID() {
+		return ID;
 	}
 
-	public void setCourseID(String courseID) {
-		this.courseID = courseID;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 
 	public int getCRN() {
@@ -46,12 +46,12 @@ public class CourseDBElement implements Comparable {
 		this.credits = credits;
 	}
 
-	public String getRoomNumber() {
-		return roomNumber;
+	public String getRoomNum() {
+		return roomNum;
 	}
 
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setRoomNum(String roomNum) {
+		this.roomNum = roomNum;
 	}
 
 	public String getInstructorName() {

@@ -13,30 +13,31 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 	private LinkedList<CourseDBElement>[] hashTable;
 	private int tableLength;
 
-	/*This class has two constructors:
-			1)	A constructor that takes in an integer n which represents the estimated number of
-	courses and determines the size of the hash table by finding a 4K+3 prime just greater than n /loading factor.
-	Example:  if n is 500 courses, then 500/1.5 = 333, The next 4K+3 prime over 333 is 347.  So, you would set the table a length to 347.
-
-			2)	A Constructor for testing purposes. This constructor will take a string “Testing” and an int for the hashtable size.  This is used only for testing.
-*/
-
 	/**
 	 * Constructor to determine table length
 	 * @param n estimated number of courses
 	 */
 	public CourseDBStructure(int n){
-
+		tableLength = getNextPrime((int) (n / LOAD_FACTOR));
+		hashTable = new LinkedList[tableLength];
+		for (int i = 0; i < tableLength; i++) {
+			hashTable[i] = new LinkedList<>();
+		}
 	}
 
 	/**
 	 * Constructor for testing purposes
-	 * @param testing
+	 * @param testing not used in actual constructor
 	 * @param hashTableSize size of hash table
 	 */
-	public CourseDBStructure(String testing, int hashTableSize){}
+	public CourseDBStructure(String testing, int hashTableSize){
+		tableLength = hashTableSize;
+		hashTable = new LinkedList[tableLength];
+		for (int i = 0; i < tableLength; i++) {
+			hashTable[i] = new LinkedList<>();
+		}
+	}
 
-	//refer to interface for help
 
 	/**
 	 * Adds to data structure based on hash code of CRN
@@ -65,7 +66,17 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 
 	@Override
 	public CourseDBElement get(int crn) throws IOException {
-		return null;
+		int index = crn % tableLength;
+		LinkedList<CourseDBElement> bucket = hashTable[index];
+
+
+		for (CourseDBElement e : bucket) {
+			if (e.getCRN() == crn){
+				return e;
+			} else break;
+		}
+		throw new IOException();
+
 	}
 
 	@Override
@@ -75,6 +86,38 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 
 	@Override
 	public int getTableSize() {
-		return 0;
+		return tableLength;
 	}
+
+
+
+	//helper methods for prime numbers
+
+	/**
+	 * Checks if a number is prime or not
+	 * @param n number to check
+	 * @return whether number is prime or not
+	 */
+	private static boolean isPrime(int n){
+		if (n <= 1) return false;
+		for (int i = 2; i < Math.sqrt(n); i++) {
+			if (n % i == 0){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Gets the next prime number
+	 * @param n number to check
+	 * @return the next prime number
+	 */
+	private static int getNextPrime(int n){
+		while (!isPrime(n)){
+			n++;
+		}
+		return n;
+	}
+
 }

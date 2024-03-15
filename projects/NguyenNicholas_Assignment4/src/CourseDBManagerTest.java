@@ -15,7 +15,7 @@ import org.junit.Test;
 /**
  * This is the test file for the CourseDBManager
  * which is implemented from the CourseDBManagerInterface
- * 
+ *
  */
 public class CourseDBManagerTest {
 	private CourseDBManagerInterface dataMgr = new CourseDBManager();
@@ -50,7 +50,7 @@ public class CourseDBManagerTest {
 			fail("This should not have caused an Exception");
 		}
 	}
-	
+
 	/**
 	 * Test for the showAll method
 	 */
@@ -64,7 +64,7 @@ public class CourseDBManagerTest {
 	 	assertEquals(list.get(1),"\nCourse:CMSC203 CRN:30503 Credits:4 Instructor:Jill B. Who-Dunit Room:SC450");
 		assertEquals(list.get(2),"\nCourse:CMSC203 CRN:30504 Credits:4 Instructor:Joey Bag-O-Donuts Room:SC450");
 	}
-	
+
 	/**
 	 * Test for the read method
 	 */
@@ -75,7 +75,7 @@ public class CourseDBManagerTest {
 			PrintWriter inFile = new PrintWriter(inputFile);
 			inFile.println("CMSC203 30504 4 SC450 Joey Bag-O-Donuts");
 			inFile.print("CMSC204 30503 4 SC450 Jill B. Who-Dunit");
-			
+
 			inFile.close();
 			dataMgr.readFile(inputFile);
 			assertEquals("CMSC203",dataMgr.get(30504).getID());
