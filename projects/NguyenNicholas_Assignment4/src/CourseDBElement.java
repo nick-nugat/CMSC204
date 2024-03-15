@@ -4,10 +4,18 @@
 
 public class CourseDBElement implements Comparable {
 	private String courseID;
-	private int crn;
+	private int CRN;
 	private int credits;
 	private String roomNumber;
 	private String instructorName;
+
+	public CourseDBElement(String courseID, int CRN, int credits, String roomNumber, String instructorName) {
+		this.courseID = courseID;
+		this.CRN = CRN;
+		this.credits = credits;
+		this.roomNumber = roomNumber;
+		this.instructorName = instructorName;
+	}
 
 	@Override
 	public int compareTo(Object o) {
@@ -22,12 +30,12 @@ public class CourseDBElement implements Comparable {
 		this.courseID = courseID;
 	}
 
-	public int getCrn() {
-		return crn;
+	public int getCRN() {
+		return CRN;
 	}
 
-	public void setCrn(int crn) {
-		this.crn = crn;
+	public void setCRN(int CRN) {
+		this.CRN = CRN;
 	}
 
 	public int getCredits() {
