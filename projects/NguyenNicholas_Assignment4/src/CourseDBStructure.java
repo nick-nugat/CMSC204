@@ -29,22 +29,38 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 
 	}
 
-	//constructor for testing purposes (?)
+	/**
+	 * Constructor for testing purposes
+	 * @param testing
+	 * @param hashTableSize size of hash table
+	 */
 	public CourseDBStructure(String testing, int hashTableSize){}
 
 	//refer to interface for help
 
+	/**
+	 * Adds to data structure based on hash code of CRN
+	 * @param element the CourseDBElement to be added to CourseDBStructure
+	 */
 	@Override
 	public void add(CourseDBElement element) {
-		int index = element.getCrn() % tableLength;
+		int index = element.getCRN() % tableLength;
 		LinkedList<CourseDBElement> bucket = hashTable[index];
 
-		for (CourseDBElement e : bucket) {
-			if (element.getCrn() == e.getCrn()){
-				return;
+		if (bucket.isEmpty()){
+			bucket.add(element);
+		} else{
+			boolean duplicate = false;
+			for (CourseDBElement  e : bucket) {
+				if (e.getCRN() == element.getCRN()){
+					duplicate = true;
+					break;
+				}
+			}
+			if (!duplicate){
+				bucket.add(element);
 			}
 		}
-		bucket.add(element);
 	}
 
 	@Override
