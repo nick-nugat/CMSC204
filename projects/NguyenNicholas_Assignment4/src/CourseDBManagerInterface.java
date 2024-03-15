@@ -22,7 +22,7 @@ public interface CourseDBManagerInterface {
 	 * @return a CourseDBElement object
 	 * 
 	 */
-	public CourseDBElement get(int crn);
+	public CourseDBElement get(int crn) throws IOException;
 	
 	/**
 	 * Reads the information of courses from a test file and adds them
