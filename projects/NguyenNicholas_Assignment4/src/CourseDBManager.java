@@ -11,12 +11,15 @@ import java.util.Scanner;
 public class CourseDBManager implements CourseDBManagerInterface {
 	private CourseDBStructure structure;
 
+	/**
+	 * Constructor to initialize a CourseDBStructure with a length
+	 */
 	public CourseDBManager(){
 		structure = new CourseDBStructure(100); //not sure what num i should be putting here
 	}
 
 	/**
-	 *
+	 * Adds to a CourseDBStructure data structure by calling its respective add() method
 	 * @param ID course ID
 	 * @param CRN course CRN
 	 * @param credits number of credits
@@ -30,9 +33,10 @@ public class CourseDBManager implements CourseDBManagerInterface {
 	}
 
 	/**
-	 *
+	 * Gets a CourseDBElement based on its CRN by calling the get() method of CourseDBStructure
+	 * Throws IOException if key isn't found
 	 * @param CRN course CRN (key)
-	 * @return
+	 * @return an element based on the CRN
 	 */
 	@Override
 	public CourseDBElement get(int CRN) {
@@ -45,9 +49,9 @@ public class CourseDBManager implements CourseDBManagerInterface {
 	}
 
 	/**
-	 *
+	 * Reads data from an input file
 	 * @param input input file
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException if file does not exist
 	 */
 	@Override
 	public void readFile(File input) throws FileNotFoundException {
@@ -79,8 +83,8 @@ public class CourseDBManager implements CourseDBManagerInterface {
 	}
 
 	/**
-	 *
-	 * @return
+	 * Calls showAll() method of CourseDBStructure to display all courses in the data structure
+	 * @return an ArrayList of String representing all courses
 	 */
 	@Override
 	public ArrayList<String> showAll() {

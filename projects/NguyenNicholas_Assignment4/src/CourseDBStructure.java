@@ -6,10 +6,7 @@ import java.io.IOException;
  * @author Nicholas Nguyen
  */
 
-//implement a hash table with buckets
 public class CourseDBStructure implements CourseDBStructureInterface {
-	//each element will have a hash code calculated based on CRN (since it's unique)
-	//however, tests require hashcode of String
 	private static final double LOAD_FACTOR = 1.5;
 	private LinkedList<CourseDBElement>[] hashTable;
 	private int tableLength;
@@ -74,6 +71,12 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		}
 	}
 
+	/**
+	 * Gets a CourseDBElement based on its CRN
+	 * @param CRN crn (key) whose associated courseDatabaseElement is to be returned
+	 * @return an element based on CRN
+	 * @throws IOException if key is not found from CRN
+	 */
 	@Override
 	public CourseDBElement get(int CRN) throws IOException {
 		int index = CRN % tableLength;
@@ -88,25 +91,26 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		throw new IOException();
 	}
 
+	/**
+	 * Returns an ArrayList of String representing all the courses
+	 * @return all courses as an ArrayList of String
+	 */
 	@Override
 	public ArrayList<String> showAll() {
 		ArrayList<String> list = new ArrayList<>();
 		
 		for (LinkedList<CourseDBElement> bucket : hashTable) {
 			for (CourseDBElement element : bucket) {
-//				String ID = element.getID();
-//				int CRN = element.getCRN();
-//				int credits = element.getCredits();
-//				String instructorName = element.getInstructorName();
-//				String roomNum = element.getRoomNum();
-//
-
 				list.add(element.toString());
 			}
 		}
 		return list;
 	}
 
+	/**
+	 *
+	 * @return the length of the table
+	 */
 	@Override
 	public int getTableSize() {
 		return tableLength;
@@ -114,15 +118,12 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 
 
 	//helper methods for prime numbers
-	private static int getNextPrime(int n) {
-		while (true) {
-			if (isPrime(n) && (n % 4 == 3)) {
-				return n;
-			}
-			n++;
-		}
-	}
 
+	/**
+	 *
+	 * @param n a number
+	 * @return true if prime, false if not
+	 */
 	private static boolean isPrime(int n) {
 		if (n <= 1) return false;
 		if (n <= 3) return true;
@@ -132,5 +133,19 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		}
 
 		return true;
+	}
+
+	/**
+	 *
+	 * @param n a number
+	 * @return the next prime number (4K + 3 prime)
+	 */
+	private static int getNextPrime(int n) {
+		while (true) {
+			if (isPrime(n) && (n % 4 == 3)) {
+				return n;
+			}
+			n++;
+		}
 	}
 }
