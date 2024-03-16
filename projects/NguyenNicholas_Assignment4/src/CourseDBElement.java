@@ -8,7 +8,7 @@ public class CourseDBElement implements Comparable {
 	private int credits;
 	private String roomNum;
 	private String instructorName;
-	private static final String COURSE_AS_STRING = "\nCourse:%s CRN:%d Credits:%d Instructor:%s Room:%s";
+	public static final String COURSE_AS_STRING = "\nCourse:%s CRN:%d Credits:%d Instructor:%s Room:%s";
 
 	public CourseDBElement(){
 
