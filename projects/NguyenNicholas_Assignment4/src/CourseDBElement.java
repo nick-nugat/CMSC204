@@ -8,7 +8,11 @@ public class CourseDBElement implements Comparable {
 	private int credits;
 	private String roomNum;
 	private String instructorName;
+	private static final String COURSE_AS_STRING = "\nCourse:%s CRN:%d Credits:%d Instructor:%s Room:%s";
 
+	public CourseDBElement(){
+
+	}
 	public CourseDBElement(String ID, int CRN, int credits, String roomNum, String instructorName) {
 		this.ID = ID;
 		this.CRN = CRN;
@@ -81,5 +85,10 @@ public class CourseDBElement implements Comparable {
 
 	public void setInstructorName(String instructorName) {
 		this.instructorName = instructorName;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(COURSE_AS_STRING, ID, CRN, credits, instructorName, roomNum);
 	}
 }
