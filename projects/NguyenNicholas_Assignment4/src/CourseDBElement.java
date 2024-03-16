@@ -17,9 +17,30 @@ public class CourseDBElement implements Comparable {
 		this.instructorName = instructorName;
 	}
 
+	/**
+	 * Compares each attribute of an element
+	 * @param o the object to be compared.
+	 * @return
+	 */
 	@Override
 	public int compareTo(Object o) {
-		return 0;
+		if (!(o instanceof CourseDBElement other)){
+			throw new IllegalArgumentException("That is not an instance of CourseDBElement! Please try again.");
+		}
+
+		if (!this.ID.equals(other.getID())) {
+			return this.ID.compareTo(other.getID());
+		}
+		if (this.CRN != other.getCRN()) {
+			return Integer.compare(this.CRN, other.getCRN());
+		}
+		if (this.credits != other.getCredits()) {
+			return Integer.compare(this.credits, other.getCredits());
+		}
+		if (!this.roomNum.equals(other.getRoomNum())) {
+			return this.roomNum.compareTo(other.getRoomNum());
+		}
+		return this.instructorName.compareTo(other.getInstructorName());
 	}
 
 	public String getID() {
