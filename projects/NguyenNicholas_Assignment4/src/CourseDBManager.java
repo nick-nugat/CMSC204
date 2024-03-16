@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,26 +17,26 @@ public class CourseDBManager implements CourseDBManagerInterface {
 
 	/**
 	 *
-	 * @param id course id
-	 * @param crn course crn
+	 * @param ID course ID
+	 * @param CRN course CRN
 	 * @param credits number of credits
 	 * @param roomNum course room number
 	 * @param instructor name of the instructor
 	 */
 	@Override
-	public void add(String id, int crn, int credits, String roomNum, String instructor) {
-		CourseDBElement element = new CourseDBElement(id, crn, credits, roomNum, instructor);
+	public void add(String ID, int CRN, int credits, String roomNum, String instructor) {
+		CourseDBElement element = new CourseDBElement(ID, CRN, credits, roomNum, instructor);
 		structure.add(element);
 	}
 
 	/**
 	 *
-	 * @param crn course crn (key)
+	 * @param CRN course CRN (key)
 	 * @return
 	 */
 	@Override
-	public CourseDBElement get(int crn) throws IOException {
-		return structure.get(crn);
+	public CourseDBElement get(int CRN) throws IOException {
+		return structure.get(CRN);
 	}
 
 	/**
@@ -52,7 +53,7 @@ public class CourseDBManager implements CourseDBManagerInterface {
 			String[] courseAsArray = line.split(" ");
 			int length = courseAsArray.length;
 
-			String id = courseAsArray[0].trim();
+			String ID = courseAsArray[0].trim();
 			int CRN = Integer.parseInt(courseAsArray[1].trim());
 			int credits = Integer.parseInt(courseAsArray[2].trim());
 			String roomNum = courseAsArray[3].trim();
@@ -67,7 +68,7 @@ public class CourseDBManager implements CourseDBManagerInterface {
 					instructorName += courseAsArray[i];
 				}
 			}
-			add(id, CRN, credits, roomNum, instructorName);
+			add(ID, CRN, credits, roomNum, instructorName);
 		}
 	}
 
