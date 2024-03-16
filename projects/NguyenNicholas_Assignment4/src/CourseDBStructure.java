@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.io.IOException;
 
 /**
  * @author Nicholas Nguyen
@@ -52,15 +53,24 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		if (bucket.isEmpty()){
 			bucket.add(element);
 		} else{
-			boolean duplicate = false;
 			for (CourseDBElement  e : bucket) {
-				if (e.getCRN() == element.getCRN()){
-					duplicate = true;
-					break;
+				if (e.compareTo(element) == 0) {
+					return;
+				} else if (e.getCRN() == element.getCRN()) {
+					if (!(e.getID().equals(element.getID()))) {
+						e.setID(element.getID());
+					}
+					if (e.getCredits() != element.getCredits()) {
+						e.setCredits(element.getCredits());
+					}
+					if (!(e.getRoomNum().equals(element.getRoomNum()))) {
+						e.setRoomNum(element.getRoomNum());
+					}
+					if (!(e.getInstructorName().equals(element.getInstructorName()))) {
+						e.setInstructorName(element.getInstructorName());
+					}
+					return;
 				}
-			}
-			if (!duplicate){
-				bucket.add(element);
 			}
 		}
 	}
@@ -70,14 +80,12 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		int index = CRN % tableLength;
 		LinkedList<CourseDBElement> bucket = hashTable[index];
 
-
 		for (CourseDBElement e : bucket) {
 			if (e.getCRN() == CRN){
 				return e;
-			} else break;
+			}
 		}
 		throw new IOException();
-
 	}
 
 	@Override
@@ -86,21 +94,16 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		
 		for (LinkedList<CourseDBElement> bucket : hashTable) {
 			for (CourseDBElement element : bucket) {
-				String id = element.getID();
+				String ID = element.getID();
 				int CRN = element.getCRN();
 				int credits = element.getCredits();
 				String instructorName = element.getInstructorName();
 				String roomNum = element.getRoomNum();
 				
-				String courseString = String.format(
-						COURSE_AS_STRING,
-							id, CRN, credits, instructorName, roomNum
-				);
-
+				String courseString = String.format(COURSE_AS_STRING, ID, CRN, credits, instructorName, roomNum);
 				list.add(courseString);
 			}
 		}
-
 		return list;
 	}
 
@@ -110,34 +113,24 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 	}
 
 
-
 	//helper methods for prime numbers
-
-	/**
-	 * Checks if a number is prime or not
-	 * @param n number to check
-	 * @return whether number is prime or not
-	 */
-	private static boolean isPrime(int n){
-		if (n <= 1) return false;
-		for (int i = 2; i < Math.sqrt(n); i++) {
-			if (n % i == 0){
-				return false;
+	private static int getNextPrime(int n) {
+		while (true) {
+			if (isPrime(n) && (n % 4 == 3)) {
+				return n;
 			}
-		}
-		return true;
-	}
-
-	/**
-	 * Gets the next prime number
-	 * @param n number to check
-	 * @return the next prime number
-	 */
-	private static int getNextPrime(int n){
-		while (!isPrime(n)){
 			n++;
 		}
-		return n;
 	}
 
+	private static boolean isPrime(int n) {
+		if (n <= 1) return false;
+		if (n <= 3) return true;
+
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0) return false;
+		}
+
+		return true;
+	}
 }
