@@ -35,8 +35,13 @@ public class CourseDBManager implements CourseDBManagerInterface {
 	 * @return
 	 */
 	@Override
-	public CourseDBElement get(int CRN) throws IOException {
-		return structure.get(CRN);
+	public CourseDBElement get(int CRN) {
+		try{
+			return structure.get(CRN);
+		} catch (IOException e){
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 	/**
@@ -65,8 +70,9 @@ public class CourseDBManager implements CourseDBManagerInterface {
 				}
 			} else {
 				for (int i = 4; i < length; i++) {
-					instructorName += courseAsArray[i];
+					instructorName += courseAsArray[i] + " ";
 				}
+				instructorName = instructorName.trim();
 			}
 			add(ID, CRN, credits, roomNum, instructorName);
 		}

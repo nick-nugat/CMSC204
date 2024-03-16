@@ -13,7 +13,6 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 	private static final double LOAD_FACTOR = 1.5;
 	private LinkedList<CourseDBElement>[] hashTable;
 	private int tableLength;
-	private static final String COURSE_AS_STRING = "\nCourse:%s CRN:%d Credits:%d Instructor:%s Room:%s";
 
 	/**
 	 * Constructor to determine table length
@@ -80,6 +79,7 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		int index = CRN % tableLength;
 		LinkedList<CourseDBElement> bucket = hashTable[index];
 
+		if (bucket.isEmpty()) throw new IOException();
 		for (CourseDBElement e : bucket) {
 			if (e.getCRN() == CRN){
 				return e;
@@ -94,14 +94,14 @@ public class CourseDBStructure implements CourseDBStructureInterface {
 		
 		for (LinkedList<CourseDBElement> bucket : hashTable) {
 			for (CourseDBElement element : bucket) {
-				String ID = element.getID();
-				int CRN = element.getCRN();
-				int credits = element.getCredits();
-				String instructorName = element.getInstructorName();
-				String roomNum = element.getRoomNum();
-				
-				String courseString = String.format(COURSE_AS_STRING, ID, CRN, credits, instructorName, roomNum);
-				list.add(courseString);
+//				String ID = element.getID();
+//				int CRN = element.getCRN();
+//				int credits = element.getCredits();
+//				String instructorName = element.getInstructorName();
+//				String roomNum = element.getRoomNum();
+//
+
+				list.add(element.toString());
 			}
 		}
 		return list;
