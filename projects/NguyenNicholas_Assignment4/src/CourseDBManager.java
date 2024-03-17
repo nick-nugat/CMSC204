@@ -15,7 +15,7 @@ public class CourseDBManager implements CourseDBManagerInterface {
 	 * Constructor to initialize a CourseDBStructure with a length
 	 */
 	public CourseDBManager(){
-		structure = new CourseDBStructure(100); //not sure what num i should be putting here
+		structure = new CourseDBStructure(100);
 	}
 
 	/**
