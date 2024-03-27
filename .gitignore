@@ -33,9 +33,9 @@ bin/
 ### Other ###
 !*.md
 
+
+docs/
 doc/
-docs/archived/
-docs/CMSC204_Syllabus.pdf
 ~*
 /.metadata/
 review/
